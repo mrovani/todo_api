@@ -1,18 +1,31 @@
 var itemTemplate = $('#templates .item')
 var list = $('#list')
 // const baseURL = 'https://afternoon-lowlands-10880.herokuapp.com/lists/1'
-const baseURL = '/lists/1'
+const baseURL = '/lists/2'
 
 var loadRequest = $.ajax({
   type: 'GET',
   url: baseURL + '/items'
 })
 
+var listRequest = $.ajax({
+  type: 'GET',
+  url: baseURL
+})
+
+
+
 loadRequest.done(function(data) {
   var itemsData = data
   itemsData.forEach((itemData) => {
     addItemToPage(itemData)
   })
+})
+
+listRequest.done(function(data) {
+  var listData = data
+  $('#listName').text("Shopping List for " + listData.name)
+
 })
 
 function addItemToPage(itemData) {
@@ -75,7 +88,8 @@ list.on('click', '.complete-button', function(event) {
 
 // Delete items when you click the "X"
 list.on('click', '.delete-button', function(event) {
-  var item = $(event.target).parent()
+  var item = $(event.target).parents('.item')
+  console.log($(event.target))
   var itemId = item.attr('data-id')
 
   var deleteRequest = $.ajax({

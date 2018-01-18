@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.3.3'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -8,6 +9,13 @@ end
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.4'
+
+# AUTHENTICATION GEMS FOR USER AUTHENTICATION
+gem 'devise'
+gem 'omniauth'
+gem 'devise_token_auth'
+
+gem 'faker', '~> 1.8.5'
 
 # gem 'rack-cors'
 # Use Puma as the app server
